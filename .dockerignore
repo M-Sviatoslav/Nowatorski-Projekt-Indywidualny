@@ -2,3 +2,5 @@ node_modules
 .git
 .github
 test
+Dockerfile
+docker-compose.yml

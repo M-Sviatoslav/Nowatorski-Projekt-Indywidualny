@@ -28,4 +28,8 @@ jobs:
         run: npm test
 
       - name: Build Docker image
-        run: docker build -t np-api .
+        run: docker build -t np-api
+
+      - name: Build Docker image (multi-stage)
+        run: docker build --target production -t np-api
+
