@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "lint": "npx eslint .",
-    "test": "ok"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
