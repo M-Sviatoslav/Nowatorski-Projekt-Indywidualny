@@ -2,10 +2,11 @@ name: Build and Push Docker Image
 
 on:
   workflow_call:
-    inputs:
-      tag:
+    secrets:
+      DOCKERHUB_USERNAME:
         required: true
-        type: string
+      DOCKERHUB_TOKEN:
+        required: true
 
 jobs:
   build-and-push:
