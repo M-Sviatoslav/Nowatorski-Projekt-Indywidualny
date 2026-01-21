@@ -28,4 +28,4 @@ jobs:
         run: npm test
 
       - name: Build Docker image
-        run: docker build -t NP-api .
+        run: docker build -t np-api .
