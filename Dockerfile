@@ -5,19 +5,17 @@ RUN npm install
 
 
 FROM deps AS test
-COPY . .
-RUN npm test
+WORKDIR /app
+COPY . .          # kopiujemy cały projekt
+RUN npm test      # uruchamiamy testy
 
 
 FROM node:20-alpine AS production
 WORKDIR /app
-
 COPY package*.json ./
 RUN npm install --production
-
-COPY --from=test /app/app.js ./app.js
-COPY --from=test /app/index.js ./index.js
-
+COPY --from=test /app .  # kopiujemy pliki źródłowe z test stage
 EXPOSE 3000
 CMD ["node", "index.js"]
+
 
