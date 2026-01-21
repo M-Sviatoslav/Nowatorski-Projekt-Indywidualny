@@ -1,21 +1,15 @@
 const express = require("express");
+const pool = require("./app");
 const app = express();
-
 app.use(express.json());
 
-// Simple GET endpoint
-app.get("/", (req, res) => {
-  res.json({ message: "Small API is working 🚀" });
+app.get("/", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT NOW()");
+    res.json({ message: "API with DB works", time: result.rows[0] });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
-// Simple POST endpoint
-app.post("/echo", (req, res) => {
-  res.json({
-    received: req.body,
-  });
-});
-
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`API running on http://localhost:${PORT}`);
-});
+app.listen(3000, () => console.log("API running on port 3000"));
