@@ -1,11 +1,10 @@
-name: CI Main Branch
+name: CI Pull Request
 
 on:
-  push:
-    branches: [ main ]
+  pull_request:
 
 jobs:
-  test-lint-build:
+  lint-and-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -24,10 +23,3 @@ jobs:
 
       - name: Run tests
         run: npm test
-
-  build-and-push:
-    needs: test-lint-build
-    uses: ./.github/workflows/build-and-push.yml
-    with:
-      tag: latest
-
