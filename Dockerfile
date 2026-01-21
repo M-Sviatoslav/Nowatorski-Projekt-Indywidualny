@@ -6,8 +6,11 @@ RUN npm install
 
 FROM deps AS test
 WORKDIR /app
-COPY . .          # kopiujemy cały projekt
-RUN npm test      # uruchamiamy testy
+
+COPY . .
+
+RUN npm test
+
 
 
 FROM node:20-alpine AS production
